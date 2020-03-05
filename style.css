@@ -1,5 +1,12 @@
 /* Just a bit bigger */
 
+aside {
+  border: 4px blue solid;
+  text-align: center;
+  background: darkslategray;
+  color: white;
+}
+
 button {
   font-size: larger;
   font-weight: bolder;
