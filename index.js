@@ -7,20 +7,16 @@ async function addProject (proj) {
     const folder = await new JSZip().loadAsync(await proj.arrayBuffer())
     const json = JSON.parse(await folder.files['project.json'].async('string')) // .wick files are just .zip files. most of the data is in project.json
 
-    // this replaces all sound files with the bruh sound
+    // this replaces all .mp3 assets with the bruh sound
     // this is done BEFORE the text replacement as it also lowers the .wick file's size a ton, which hopefully makes it easier to work with
-    const fileformats = ['.mp3', '.wav', '.opus', '.ogg', '.m4a', '.flac']
-
-    fileformats.forEach(async ending => {
-      const mp3files = Object.keys(folder.files)
-        .filter(filename => filename.startsWith('assets/') && filename.endsWith(ending)) // files of the correct ending in the assets folder
-      if (mp3files.length) {
-        const sound = await (await fetch('./sound' + ending)).blob()
-        mp3files.forEach(id => {
-          folder.file(id, sound) // Overwrite the files with the bruh sound blob.
-        })
-      }
-    })
+    const mp3files = Object.keys(folder.files)
+      .filter(e => e.startsWith('assets/') && e.endsWith('.mp3')) // .mp3 files in the assets folder
+    if (mp3files.length) {
+      const sound = await (await fetch('./sound.mp3')).blob()
+      mp3files.forEach(id => {
+        folder.file(id, sound) // Overwrite the files with the bruh sound blob.
+      })
+    }
 
     // this replaces every text with "bruh"
     Object.keys(json.objects).filter(id => { // Clips, text, paths, etc. are stored in the project.json file. We will get the IDs of every single object, and filter it.
