@@ -12,7 +12,7 @@ async function addProject (proj) {
     const mp3files = Object.keys(folder.files)
       .filter(e => e.startsWith('assets/') && e.endsWith('.mp3')) // .mp3 files in the assets folder
     if (mp3files.length) {
-      const sound = await (await fetch('./sound.mp3')).blob()
+      const sound = await (await fetch('./assets/sound.mp3')).blob()
       mp3files.forEach(id => {
         folder.file(id, sound) // Overwrite the files with the bruh sound blob.
       })
