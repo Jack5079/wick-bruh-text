@@ -8,6 +8,7 @@ async function addProject (proj) {
     const json = JSON.parse(await folder.files['project.json'].async('string')) // .wick files are just .zip files. most of the data is in project.json
 
     // this replaces all .mp3 assets with the bruh sound
+    // this is done BEFORE the text replacement as it also lowers the .wick file's size a ton, which hopefully makes it easier to work with
     const mp3files = Object.keys(folder.files)
       .filter(e => e.startsWith('assets/') && e.endsWith('.mp3')) // .mp3 files in the assets folder
     if (mp3files.length) {
