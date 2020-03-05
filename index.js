@@ -7,14 +7,6 @@ async function addProject (proj) {
     const folder = await new JSZip().loadAsync(await proj.arrayBuffer())
     const json = JSON.parse(await folder.files['project.json'].async('string')) // .wick files are just .zip files. most of the data is in project.json
 
-    // this replaces every text with "bruh"
-    Object.keys(json.objects).filter(id => { // Clips, text, paths, etc. are stored in the project.json file. We will get the IDs of every single object, and filter it.
-      if (!json.objects[id].json) return false // If it doesn't have the data we need, ignore it.
-      return json.objects[id].json[0] === 'PointText' // If does have the data but it isn't text, ignore it.
-    }).forEach(id => { // Now for the actual text replacement
-      json.objects[id].json[1].content = 'bruh'
-    })
-
     // this replaces all .mp3 assets with the bruh sound
     const mp3files = Object.keys(folder.files)
       .filter(e => e.startsWith('assets/') && e.endsWith('.mp3')) // .mp3 files in the assets folder
@@ -24,6 +16,15 @@ async function addProject (proj) {
         folder.file(id, sound) // Overwrite the files with the bruh sound blob.
       })
     }
+
+    // this replaces every text with "bruh"
+    Object.keys(json.objects).filter(id => { // Clips, text, paths, etc. are stored in the project.json file. We will get the IDs of every single object, and filter it.
+      if (!json.objects[id].json) return false // If it doesn't have the data we need, ignore it.
+      return json.objects[id].json[0] === 'PointText' // If does have the data but it isn't text, ignore it.
+    }).forEach(id => { // Now for the actual text replacement
+      json.objects[id].json[1].content = 'bruh'
+    })
+
     const blob = await folder.file('project.json', JSON.stringify(json)).generateAsync({ type: 'blob' })
 
     const link = document.createElement('a')
