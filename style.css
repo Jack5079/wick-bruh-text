@@ -1,6 +1,7 @@
 /* Just a bit bigger */
 
-aside {
+article {
+  display: inline-block;
   border: 4px blue solid;
   text-align: center;
   background: darkslategray;
@@ -10,4 +11,8 @@ aside {
 button {
   font-size: larger;
   font-weight: bolder;
+}
+
+body {
+  text-align: center;
 }
