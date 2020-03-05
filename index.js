@@ -16,12 +16,12 @@ async function addProject (proj) {
   }
 
   // this replaces every text with "bruh"
-  Object.keys(project.objects).filter(id => { // Clips, text, paths, etc. are stored in the project.json file. We will get the IDs of every single object, and filter it.
-    if (!project.objects[id].json) return false // If it doesn't have the data we need, ignore it.
-    return project.objects[id].json[0] === 'PointText' // If does have the data but it isn't text, ignore it.
-  }).forEach(id => { // Now for the actual text replacement
-    project.objects[id].json[1].content = 'bruh'
-  })
+  // Clips, text, paths, etc. are stored in the project.json file. We will get the IDs of every single object, and filter it to only text.
+  Object.keys(project.objects)
+    .filter(id => project.objects[id].json && project.objects[id].json[0] === 'PointText') // Only objects with data which has the text type
+    .forEach(id => { // Now for the actual text replacement
+      project.objects[id].json[1].content = 'bruh'
+    })
 
   const blob = await zip.file('project.json', JSON.stringify(project)).generateAsync({ type: 'blob' })
 
