@@ -1,4 +1,6 @@
-/* global importScripts, JSZip, self, fetch */
+/* eslint-env worker */
+/* global JSZip */
+
 importScripts('./assets/jszip.min.js')
 
 self.addEventListener('message', async message => {
