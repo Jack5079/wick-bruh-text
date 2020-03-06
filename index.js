@@ -12,11 +12,12 @@ worker.addEventListener('message', message => {
   link.click()
   URL.revokeObjectURL(link.href)
 })
+
 async function addProject (proj) {
   worker.postMessage(proj)
 }
 
 document.getElementById('import').addEventListener('change', event => {
-  const projects = [...event.currentTarget.files]
+  const projects = [...event.target.files]
   projects.forEach(addProject)
 })
