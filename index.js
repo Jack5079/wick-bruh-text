@@ -13,11 +13,8 @@ worker.addEventListener('message', message => {
   URL.revokeObjectURL(link.href)
 })
 
-async function addProject (proj) {
-  worker.postMessage(proj)
-}
-
 document.getElementById('import').addEventListener('change', event => {
-  const projects = [...event.target.files]
-  projects.forEach(addProject)
+  for (const file of event.target.files) {
+    worker.postMessage(file)
+  }
 })
