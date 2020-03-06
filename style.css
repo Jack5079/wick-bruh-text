@@ -19,3 +19,12 @@ body {
   background: darkslategray;
   color: white;
 }
+
+#beforetoafter img {
+  padding: 1em;
+}
+
+label mark {
+  padding: 1em;
+  border-radius: 1em;
+}
