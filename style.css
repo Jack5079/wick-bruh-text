@@ -16,3 +16,9 @@ button {
 body {
   text-align: center;
 }
+
+#beforetoafter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
