@@ -19,7 +19,15 @@ body {
   padding: 1em;
 }
 
-label mark {
+label {
+  cursor: pointer;
+  box-shadow: inset white 0 0 10px;
+  background: black;
   padding: 1em;
   border-radius: 1em;
+  transition: box-shadow 1s;
+}
+
+label:hover {
+  box-shadow: inset white 0 0 0px;
 }
