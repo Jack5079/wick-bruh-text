@@ -1,13 +1,5 @@
 /* Just a bit bigger */
 
-article {
-  display: inline-block;
-  border: 4px blue solid;
-  text-align: center;
-  background: darkslategray;
-  color: white;
-}
-
 button {
   font-size: larger;
   font-weight: bolder;
@@ -21,4 +13,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: inline-block;
+  border: 4px blue solid;
+  text-align: center;
+  background: darkslategray;
+  color: white;
 }
