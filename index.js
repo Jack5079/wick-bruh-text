@@ -14,7 +14,5 @@ worker.addEventListener('message', message => {
 })
 
 document.getElementById('import').addEventListener('change', event => {
-  for (const file of event.target.files) {
-    worker.postMessage(file)
-  }
+  for (const file of event.target.files) worker.postMessage(file)
 })
